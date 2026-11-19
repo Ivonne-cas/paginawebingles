@@ -67,3 +67,15 @@ function downloadText(name,text){let a=document.createElement('a'),url=URL.creat
 
 document.getElementById('welcomeVideo').addEventListener('click',e=>{if(e.target.closest('iframe'))return;showTab('settings');toast('Add your YouTube video link in Settings.')});
 renderStatus();renderAuth();initBackend();
+const learningSlides=[...document.querySelectorAll('.learning-slide')],learningDots=[...document.querySelectorAll('.carousel-dot')];
+let learningIndex=0,carouselPaused=window.matchMedia('(prefers-reduced-motion: reduce)').matches,carouselHover=false,carouselFocus=false;
+function setLearningSlide(index,announce=true){learningIndex=(index+learningSlides.length)%learningSlides.length;learningSlides.forEach((slide,i)=>{const active=i===learningIndex;slide.classList.toggle('active',active);slide.setAttribute('aria-hidden',String(!active))});learningDots.forEach((dot,i)=>{const active=i===learningIndex;dot.classList.toggle('active',active);if(active)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')});document.getElementById('carouselCounter').textContent=`${String(learningIndex+1).padStart(2,'0')} / ${String(learningSlides.length).padStart(2,'0')}`;if(announce)document.getElementById('learningCarousel').setAttribute('aria-live','polite');else document.getElementById('learningCarousel').setAttribute('aria-live','off')}
+document.getElementById('carouselPrev').addEventListener('click',()=>setLearningSlide(learningIndex-1));
+document.getElementById('carouselNext').addEventListener('click',()=>setLearningSlide(learningIndex+1));
+learningDots.forEach(dot=>dot.addEventListener('click',()=>setLearningSlide(Number(dot.dataset.slideTo))));
+const learningCarousel=document.querySelector('.learning-carousel'),carouselPauseButton=document.getElementById('carouselPause');
+function updateCarouselPause(){carouselPauseButton.innerHTML=carouselPaused?'▶ <span>Play</span>':'Ⅱ <span>Pause</span>';carouselPauseButton.setAttribute('aria-label',carouselPaused?'Start automatic carousel':'Pause automatic carousel')}
+carouselPauseButton.addEventListener('click',()=>{carouselPaused=!carouselPaused;updateCarouselPause()});
+learningCarousel.addEventListener('mouseenter',()=>carouselHover=true);learningCarousel.addEventListener('mouseleave',()=>carouselHover=false);learningCarousel.addEventListener('focusin',()=>carouselFocus=true);learningCarousel.addEventListener('focusout',e=>{if(!learningCarousel.contains(e.relatedTarget))carouselFocus=false});
+learningCarousel.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();setLearningSlide(learningIndex-1)}if(e.key==='ArrowRight'){e.preventDefault();setLearningSlide(learningIndex+1)}});
+setInterval(()=>{if(!carouselPaused&&!carouselHover&&!carouselFocus&&!document.hidden&&document.getElementById('tab-home').classList.contains('active'))setLearningSlide(learningIndex+1,false)},9000);updateCarouselPause();
