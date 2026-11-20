@@ -6,7 +6,8 @@ Diseñado por **KarolJohana Castellanos Martínez**.
 ## Archivos
 
 - `index.html`, `styles.css`, `app.js`: sitio web responsive para GitHub Pages.
-- `study-guide.pdf`: guía descargable de estrategias de lectura, fuentes confiables, gramática, conectores, glosario y guía de escritura.
+- `Guiadeestudio.pdf`: guía de estudio en español, comprimida para publicarse en GitHub Pages y mostrarse dentro de The Lab Guide.
+- `study-guide.pdf`: quick review in English.
 - `supabase-setup.sql`: creación de la tabla de progreso y reglas de privacidad por estudiante.
 - `assets/`: ilustraciones originales del laboratorio, la bioluminiscencia y la máquina analítica.
 - Dos imágenes de la carpeta se muestran dentro de The Lab Guide y se pueden abrir por separado. La presentación PDF se previsualiza incrustada y tiene un enlace para abrirla en otra pestaña.
@@ -49,7 +50,7 @@ La URL y clave pública se guardan en el navegador que configura el sitio. En ca
 
 ## Publicar en GitHub Pages
 
-1. Crea un repositorio y sube `index.html`, `styles.css`, `app.js`, `study-guide.pdf` y `supabase-setup.sql` a su carpeta raíz.
+1. Sube `index.html`, `styles.css`, `app.js`, `Guiadeestudio.pdf`, los recursos PDF y `supabase-setup.sql` a la raíz del repositorio.
 2. En GitHub abre **Settings → Pages**.
 3. Elige **Deploy from a branch**, rama `main`, carpeta `/ (root)`, y guarda.
 4. Abre la URL que entrega GitHub Pages, conecta Supabase y crea una cuenta de estudiante.
