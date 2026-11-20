@@ -80,3 +80,6 @@
 .intro-panel h2{font:700 16px Outfit;color:var(--navy);margin:4px 0 7px;}
 .intro-panel p{font-size:10px;line-height:1.65;color:#53677e;margin:0;}
 @media(max-width:700px){.project-intro{grid-template-columns:1fr;gap:9px;margin:10px 0}.intro-panel{grid-template-columns:34px 1fr;padding:13px;gap:9px}.intro-icon{width:33px;height:33px;font-size:17px}.intro-panel h2{font-size:14px}.intro-panel p{font-size:9px}}
+
+.worksheet-resources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0 22px}.worksheet-card h2{margin:9px 0 4px}.worksheet-card .pdf-preview{height:360px}@media(max-width:760px){.worksheet-resources{grid-template-columns:1fr}.worksheet-card .pdf-preview{height:320px}}
+
